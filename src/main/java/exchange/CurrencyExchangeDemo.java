@@ -8,8 +8,9 @@ import exchange.model.Currency;
 
 import static exchange.model.Color.*;
 
-public class ExchangeDemoApp {
+public class CurrencyExchangeDemo {
     public static void main(String[] args) {
+        // exchangeFee и курсы валют поместил в файл src/main/resources/rate.json
         RateProvider rateProvider = new RateProviderImpl();
         ConverterWrapperImpl converter = new ConverterWrapperImpl(rateProvider);
         UserInterface userInterface = new UserInterface();
@@ -17,8 +18,6 @@ public class ExchangeDemoApp {
         do {
             Currency currency = userInterface.chooseExchangeService();
             double amount = userInterface.enterAmount();
-
-            // exchangeFee и курсы валют поместил в файл src/main/resources/rate.json
             String result = converter.convert(currency, amount, rateProvider.getFeeByCurrency(currency));
 
             System.out.println(BLUE + result + RESET);

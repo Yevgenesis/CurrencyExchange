@@ -29,7 +29,7 @@ public class ConverterImpl {
 
     private double convertAmount(Currency fromCurrency, Currency toCurrency, double amount, double exchangeFee) {
         if (amount < 0 || exchangeFee < 0) {
-            throw new NegativeIncomeException(RED+"The amount or fee must be positive!"+RESET);
+            throw new NegativeIncomeException(RED + "The amount and exchangeFee must be positive!" + RESET);
         }
         Map<String, Double> convertedAmount = rateProvider.getRatesByCurrency(fromCurrency);
         return (convertedAmount.get(toCurrency.name()) * amount) * (1 - exchangeFee);
