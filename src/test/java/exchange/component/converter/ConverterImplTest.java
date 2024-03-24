@@ -2,12 +2,9 @@ package exchange.component.converter;
 
 import exchange.component.provider.RateProvider;
 import exchange.component.provider.RateProviderImpl;
-import exchange.component.wrapper.ConverterWrapperImpl;
 import exchange.exception.NegativeIncomeException;
 import org.junit.jupiter.api.Test;
 
-import static exchange.model.Currency.EUR;
-import static exchange.model.Currency.USD;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ConverterImplTest {
@@ -15,63 +12,51 @@ class ConverterImplTest {
     RateProvider rateProvider = new RateProviderImpl();
     ConverterImpl converter = new ConverterImpl(rateProvider);
 
-    double amount;
-    double exchangeFee;
 
     @Test
     void usdToEurTest() {
+        double amount = 100;
+        double exchangeFee = 0.05;
 
-        amount = 100;
-        exchangeFee = 0.05;
-
-        Double expectedResult = 85.50;
-        Double actualResult = converter.usdToEur(amount, exchangeFee);
+        double expectedResult = 85.5;
+        double actualResult = converter.usdToEur(amount, exchangeFee);
 
         assertEquals(expectedResult, actualResult);
-
     }
-
 
     @Test
     void eurToUsdTest() {
-        amount = 10;
-        exchangeFee = 0.01;
+        double amount = 10;
+        double exchangeFee = 0.01;
 
-        Double expectedResult = 10.89;
-        Double actualResult = converter.eurToUsd(amount, exchangeFee);
+        double expectedResult = 10.89;
+        double actualResult = converter.eurToUsd(amount, exchangeFee);
 
         assertEquals(expectedResult, actualResult);
     }
 
     @Test
     public void usdAmountBelowZeroIncome() {
-        amount = -1;
-        assertThrows(NegativeIncomeException.class, () -> {
-            converter.usdToEur(amount, exchangeFee);
-        });
+        double amount = -1;
+        assertThrows(NegativeIncomeException.class, () -> converter.usdToEur(amount, 0.01));
     }
 
     @Test
     public void usdFeeBelowZeroIncome() {
-        exchangeFee = -1;
-        assertThrows(NegativeIncomeException.class, () -> {
-            converter.usdToEur( amount, exchangeFee);
-        });
+        double exchangeFee = -1;
+        assertThrows(NegativeIncomeException.class, () -> converter.usdToEur(10, exchangeFee));
     }
 
     @Test
     public void eurAmountBelowZeroIncome() {
-        amount = -1;
-        assertThrows(NegativeIncomeException.class, () -> {
-            converter.eurToUsd(amount, exchangeFee);
-        });
+        double amount = -1;
+        assertThrows(NegativeIncomeException.class, () -> converter.eurToUsd(amount, 0.01));
     }
 
     @Test
     public void eurFeeBelowZeroIncome() {
-        exchangeFee = -1;
-        assertThrows(NegativeIncomeException.class, () -> {
-            converter.eurToUsd(amount, exchangeFee);
-        });
+        double exchangeFee = -1;
+        assertThrows(NegativeIncomeException.class, () -> converter.eurToUsd(10, exchangeFee));
     }
+
 }
