@@ -19,8 +19,8 @@ public class UserInterface {
 
     public Currency chooseExchangeService() {
         while (true) {
-            System.out.println(GREEN+"1"+RESET+" - "+PURPLE+"USD "+RESET+"-> "+PURPLE+"EUR: ");
-            System.out.println(GREEN+"1"+RESET+" - "+PURPLE+"EUR "+RESET+"-> "+PURPLE+"USD: ");
+            System.out.println("1" + GREEN + " - " + PURPLE + "USD " + GREEN + "-> " + PURPLE + "EUR: " + RESET);
+            System.out.println("2" + GREEN + " - " + PURPLE + "EUR " + GREEN + "-> " + PURPLE + "USD: ");
             System.out.print(GREEN + "Chose your service: " + RESET);
 
             String choice = scanner.nextLine();

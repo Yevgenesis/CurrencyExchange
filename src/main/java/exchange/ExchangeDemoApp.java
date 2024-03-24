@@ -7,8 +7,6 @@ import exchange.component.provider.RateProviderImpl;
 import exchange.model.Currency;
 
 import static exchange.model.Color.*;
-import static exchange.model.Currency.EUR;
-import static exchange.model.Currency.USD;
 
 public class ExchangeDemoApp {
     /*
@@ -55,7 +53,7 @@ Expected result: 10 EUR = 10.89 USD
             // exchangeFee и курсы валют поместил в файл src/main/resources/rate.json
             String result = converter.convert(currency, amount, rateProvider.getFeeByCurrency(currency));
 
-            System.out.println(result);
+            System.out.println(BLUE + result + RESET);
             System.out.println();
 
             // выход из цикла по желанию пользователя

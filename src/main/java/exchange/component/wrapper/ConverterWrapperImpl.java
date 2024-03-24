@@ -5,8 +5,6 @@ import exchange.exception.UnsupportedCurrencyException;
 import exchange.model.Currency;
 import exchange.component.provider.RateProvider;
 
-import static exchange.model.Color.BLUE;
-import static exchange.model.Color.RESET;
 
 public class ConverterWrapperImpl implements ConverterWrapper {
     private final ConverterImpl converterImpl;
@@ -19,11 +17,11 @@ public class ConverterWrapperImpl implements ConverterWrapper {
         switch (currency) {
             case EUR -> {
                 double convertedAmount = converterImpl.eurToUsd(amount, fee);
-                return BLUE + formatResult(amount) + " EUR = " + formatResult(convertedAmount) + " USD" + RESET;
+                return formatResult(amount) + " EUR = " + formatResult(convertedAmount) + " USD";
             }
             case USD -> {
                 double convertedAmount = converterImpl.usdToEur(amount, fee);
-                return BLUE + formatResult(amount) + " USD = " + formatResult(convertedAmount) + " EUR" + RESET;
+                return formatResult(amount) + " USD = " + formatResult(convertedAmount) + " EUR";
             }
             default -> {
                 throw new UnsupportedCurrencyException("Unsupported currency " + currency.name());
