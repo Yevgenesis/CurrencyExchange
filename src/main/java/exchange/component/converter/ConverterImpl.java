@@ -31,7 +31,10 @@ public class ConverterImpl {
         if (amount < 0 || exchangeFee < 0) {
             throw new NegativeIncomeException(RED + "The amount and exchangeFee must be positive!" + RESET);
         }
+        // Получаем курсы валют от провайдера
         Map<String, Double> convertedAmount = rateProvider.getRatesByCurrency(fromCurrency);
+
+        // Выполняем конвертацию с учётом exchangeFee и возвращаем результат
         return (convertedAmount.get(toCurrency.name()) * amount) * (1 - exchangeFee);
     }
 

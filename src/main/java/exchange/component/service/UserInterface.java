@@ -19,6 +19,7 @@ public class UserInterface {
 
     public Currency chooseExchangeService() {
         while (true) {
+            // Вывод в цвете списка доступных вариантов обмена
             System.out.println("1" + GREEN + " - " + PURPLE + "USD " + GREEN + "-> " + PURPLE + "EUR: " + RESET);
             System.out.println("2" + GREEN + " - " + PURPLE + "EUR " + GREEN + "-> " + PURPLE + "USD: ");
             System.out.print(GREEN + "Chose your service: " + RESET);
@@ -37,6 +38,8 @@ public class UserInterface {
         }
     }
 
+
+    // Метод для ввода суммы обмена от пользователя
     public double enterAmount() {
         while (true) {
             System.out.print(GREEN + "Input amount: " + RESET);
